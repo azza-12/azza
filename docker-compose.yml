@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  web:
+    image: nginx:latest
+    ports:
+      - "81:80"
+    volumes:
+      - "/home/azzafh/site:/usr/share/nginx/html"
+    restart: always
