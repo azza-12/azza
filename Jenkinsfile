@@ -22,7 +22,7 @@ pipeline {
                 sh 'git status'
                 // Add and commit changes
                 sh 'git add .'
-                sh 'git commit -m "Update deployment"'
+                sh 'git commit -m "ss"'
                 
                 // Push changes to GitHub
                 sh 'git push origin main'
