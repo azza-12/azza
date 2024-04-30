@@ -10,7 +10,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 // Pull Docker images
-                sh 'docker pull votrenomutilisateur/myapp:latest'
+                sh 'docker pull azza463/myapp:latest'
                 sh 'docker pull nginx:latest'
                 
                 // Start services using Docker Compose
