@@ -4,7 +4,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Checkout code from Git repository
-                git 'https://github.com/azza-12/azza.git' , branch: 'main'
+                git branch: 'main', url: 'https://github.com/azza-12/azza.git'
             }
         }
         stage('Deploy') {
