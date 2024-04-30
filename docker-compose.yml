@@ -2,9 +2,9 @@ version: '3'
 
 services:
   web:
-    image: nginx:latest
+    image: nginx
     ports:
-      - "81:80"
+      - "51:80"
     volumes:
       - "/home/azzafh/site:/usr/share/nginx/html"
     restart: always
