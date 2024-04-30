@@ -1,13 +1,13 @@
 pipeline {
     agent any
 
-    stages {
-        stage('Checkout') {
-            steps {
-                // Récupérer le code depuis le dépôt GitHub
-                git 'https://github.com/azza-12/azza.git'
-            }
-        }
+    stage('Checkout') {
+    steps {
+        // Récupérer le code depuis le dépôt GitHub
+        git url: 'https://github.com/azza-12/azza.git', branch: 'main'
+    }
+}
+
 
         stage('Deploy') {
             steps {
@@ -29,7 +29,7 @@ pipeline {
                 sh 'git commit -m "Update deployment"'
 
                 // Poussez les modifications vers le dépôt GitHub
-                sh 'git push origin main'
+                sh 'git push'
             }
         }
     }
