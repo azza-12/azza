@@ -19,6 +19,7 @@ pipeline {
         }
         stage('Push to GitHub') {
             steps {
+                sh 'git status'
                 // Add and commit changes
                 sh 'git add .'
                 sh 'git commit -m "Update deployment"'
