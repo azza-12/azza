@@ -14,20 +14,20 @@ pipeline {
         }
    stage('Build Docker Image') {
             steps {
-                sh 'docker build -t page_web .'
+                sh 'docker build -t web .'
             }
         } 
         stage('Run Docker Container') {
             steps {
-                sh 'docker run -d -p 51:80 --name myapp page_web'
+                sh 'docker run -d -p 51:80 --name myapp1 web'
             }
         }
        
         stage('Push to Docker Hub') {
             steps {
                 sh 'docker login -u azza463 -p azza@1234'
-                sh 'docker tag page_web docker.io/azza463/page_web:latest'
-                sh 'docker push docker.io/azza463/page_web:latest'
+                sh 'docker tag page_web docker.io/azza463/web:latest'
+                sh 'docker push docker.io/azza463/web:latest'
             }
         }
        
