@@ -7,32 +7,34 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/azza-12/azza.git'
             }
         }
-  stage('Test html site') {
+ stage('Test html site') {
             steps {
                   publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '', reportFiles: 'jen.html', reportName: 'HTML Report',                   reportTitles: '', useWrapperFileDirectly: true])
             }
         }
-        stage('Deploy') {
+   stage('Build Docker Image') {
             steps {
-                // Pull Docker images
-                sh 'docker pull azza463/myapp:latest'
-                sh 'docker pull nginx:latest'
-                
-                // Start services using Docker Compose
-                sh 'docker-compose up -d'
+                sh 'docker build -t page_web .'
+            }
+        } 
+        stage('Run Docker Container') {
+            steps {
+                sh 'docker run -d -p 51:80 --name myapp page_web'
             }
         }
-        stage('Push to GitHub') {
+       
+        stage('Push to Docker Hub') {
             steps {
-                sh 'git status'
-                // Add and commit changes
-                sh 'git add .'
-                sh 'git commit -m "ss"'
-                
-                // Push changes to GitHub
-                sh 'git push origin main'
+                sh 'docker login -u azza463 -p azza@1234'
+                sh 'docker tag page_web docker.io/azza463/page_web:latest'
+                sh 'docker push docker.io/azza463/page_web:latest'
+            }
+        }
+       
+        stage('Deploy with Docker Compose') {
+            steps {
+                sh 'docker-compose up -d'
             }
         }
     }
 }
-
