@@ -17,12 +17,6 @@ pipeline {
                 sh 'docker build -t sit .'
             }
         } 
-        stage('Run Docker Container') {
-            steps {
-                sh 'docker run -d -p 51:80 --name app2 sit'
-            }
-        }
-       
         stage('Push to Docker Hub') {
             steps {
                 sh 'docker login -u azza463 -p azza@1234'
