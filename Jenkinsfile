@@ -26,7 +26,7 @@ pipeline {
         stage('Push to Docker Hub') {
             steps {
                 sh 'docker login -u azza463 -p azza@1234'
-                sh 'docker tag page_web docker.io/azza463/web:latest'
+                sh 'docker tag web docker.io/azza463/web:latest'
                 sh 'docker push docker.io/azza463/web:latest'
             }
         }
