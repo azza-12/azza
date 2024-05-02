@@ -7,6 +7,11 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/azza-12/azza.git'
             }
         }
+  stage('Test html site') {
+            steps {
+                  publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '', reportFiles: 'jen.html', reportName: 'HTML Report',                   reportTitles: '', useWrapperFileDirectly: true])
+            }
+        }
         stage('Deploy') {
             steps {
                 // Pull Docker images
